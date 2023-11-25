@@ -1,6 +1,3 @@
-Certainly! Here's a README for your `todo-app` that you can copy and paste directly into your repository:
-
-```markdown
 # Todo-App
 
 This project is a simple To-Do application powered by Flask and MySQL. It allows users to add, delete, and update tasks in a to-do list.

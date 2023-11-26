@@ -17,7 +17,7 @@ def connect_with_retry():
             )
             return db
         except Error as e:
-            print("Error connecting to MySQL, retrying in 5 seconds...")
+            print(f"Error connecting to MySQL: {e}, retrying in 5 seconds...")
             time.sleep(5)
     raise Exception("Failed to connect to MySQL after several attempts")
 
@@ -26,15 +26,11 @@ db = connect_with_retry()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-@app.route('/todos', methods=['GET'])
-def get_todos():
     cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM todos")
     todos = cursor.fetchall()
     cursor.close()
-    return jsonify(todos)
+    return render_template('index.html', tasks=todos)
 
 @app.route('/todo', methods=['POST'])
 def add_todo():
@@ -49,19 +45,25 @@ def add_todo():
 @app.route('/todo/<int:todo_id>', methods=['PUT'])
 def update_todo(todo_id):
     data = request.json
-    status = data.get('status')
+    task = data.get('task')
     cursor = db.cursor()
-    cursor.execute("UPDATE todos SET status = %s WHERE id = %s", (status, todo_id))
+    cursor.execute("UPDATE todos SET task = %s WHERE id = %s", (task, todo_id))
+    affected_rows = cursor.rowcount
     db.commit()
     cursor.close()
+    if affected_rows == 0:
+        return jsonify({'status': 'failed', 'message': 'No task found with the provided ID'}), 404
     return jsonify({'status': 'success', 'message': 'Task updated'})
 
 @app.route('/todo/<int:todo_id>', methods=['DELETE'])
 def delete_todo(todo_id):
     cursor = db.cursor()
     cursor.execute("DELETE FROM todos WHERE id = %s", (todo_id,))
+    affected_rows = cursor.rowcount
     db.commit()
     cursor.close()
+    if affected_rows == 0:
+        return jsonify({'status': 'failed', 'message': 'No task found with the provided ID'}), 404
     return jsonify({'status': 'success', 'message': 'Task deleted'})
 
 if __name__ == '__main__':

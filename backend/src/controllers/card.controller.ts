@@ -136,6 +136,7 @@ export const updateCard = async (req: Request, res: Response) => {
 
 // Move a card to a different column or position
 export const moveCard = async (req: Request, res: Response) => {
+  let connection;
   try {
     const { id } = req.params;
     const { column_id, position } = req.body;
@@ -145,13 +146,15 @@ export const moveCard = async (req: Request, res: Response) => {
     }
     
     // Get a connection for transactions
-    const connection = await getPoolConnection();
+    connection = await getPoolConnection();
     
     // First, get the current card information
-    const [cards] = await connection.query<RowDataPacket[]>('SELECT * FROM cards WHERE id = ?', [id]);
+    const [cards] = await connection.query<RowDataPacket[]>(
+      'SELECT * FROM cards WHERE id = ?',
+      [id]
+    );
     
     if (cards.length === 0) {
-      connection.release();
       return res.status(404).json({ error: 'Card not found' });
     }
     
@@ -176,52 +179,57 @@ export const moveCard = async (req: Request, res: Response) => {
           'UPDATE cards SET position = position + 1 WHERE column_id = ? AND position >= ?',
           [column_id, position]
         );
-        
-        // Move the card to the new column and position
-        await connection.query(
-          'UPDATE cards SET column_id = ?, position = ? WHERE id = ?',
-          [column_id, position, id]
-        );
       } else {
         // Moving within the same column
         if (position > oldPosition) {
-          // Moving down: update cards in between (decrease their positions)
+          // Moving down
           await connection.query(
             'UPDATE cards SET position = position - 1 WHERE column_id = ? AND position > ? AND position <= ?',
             [column_id, oldPosition, position]
           );
         } else if (position < oldPosition) {
-          // Moving up: update cards in between (increase their positions)
+          // Moving up
           await connection.query(
             'UPDATE cards SET position = position + 1 WHERE column_id = ? AND position >= ? AND position < ?',
             [column_id, position, oldPosition]
           );
         }
-        
-        // Update card position
-        await connection.query(
-          'UPDATE cards SET position = ? WHERE id = ?',
-          [position, id]
-        );
       }
       
-      await connection.commit();
-      connection.release();
+      // Move the card to its new position
+      await connection.query(
+        'UPDATE cards SET column_id = ?, position = ? WHERE id = ?',
+        [column_id, position, id]
+      );
       
-      res.json({ 
-        id, 
-        column_id, 
-        position,
-        message: 'Card moved successfully' 
+      await connection.commit();
+      
+      // Get the updated card
+      const [updatedCards] = await connection.query<RowDataPacket[]>(
+        'SELECT * FROM cards WHERE id = ?',
+        [id]
+      );
+      
+      if (updatedCards.length === 0) {
+        throw new Error('Card not found after update');
+      }
+      
+      const updatedCard = updatedCards[0];
+      res.json({
+        ...updatedCard,
+        message: 'Card moved successfully'
       });
-    } catch (err) {
+    } catch (error) {
       await connection.rollback();
-      connection.release();
-      throw err;
+      throw error;
     }
   } catch (error) {
     console.error('Error moving card:', error);
     res.status(500).json({ error: 'Failed to move card' });
+  } finally {
+    if (connection) {
+      connection.release();
+    }
   }
 };
 

@@ -23,7 +23,7 @@ const CardContainer = styled.div<{ isDragging: boolean }>`
   min-height: 32px;
   padding: 8px 12px;
   position: relative;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
   cursor: grab;
 
   &:hover {
@@ -182,6 +182,7 @@ const CardItem: React.FC<CardItemProps> = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           isDragging={snapshot.isDragging}
+          style={provided.draggableProps.style}
         >
           {isEditing ? (
             <EditForm>

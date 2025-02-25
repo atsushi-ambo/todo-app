@@ -183,7 +183,7 @@ const BoardColumn: React.FC<BoardColumnProps> = ({
   return (
     <ColumnContainer>
       <ColumnHeader>{column.name}</ColumnHeader>
-      <Droppable droppableId={`${column.id}`}>
+      <Droppable droppableId={column.id.toString()}>
         {(provided, snapshot) => (
           <CardsContainer
             ref={provided.innerRef}

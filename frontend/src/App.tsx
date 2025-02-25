@@ -95,10 +95,12 @@ const App: React.FC = () => {
     const { source, destination, draggableId } = result;
     
     if (!destination || !board) {
+      console.log('No destination or board not loaded');
       return;
     }
     
     if (source.droppableId === destination.droppableId && source.index === destination.index) {
+      console.log('Card position unchanged');
       return;
     }
     
@@ -115,6 +117,7 @@ const App: React.FC = () => {
       const destColumn = newBoard.columns.find((col: Column) => col.id === destinationColumnId);
       
       if (!sourceColumn || !destColumn) {
+        console.error('Source or destination column not found');
         return;
       }
 
@@ -126,6 +129,13 @@ const App: React.FC = () => {
       
       // Update state immediately for smooth UI update
       setBoard(newBoard);
+
+      console.log('Moving card:', {
+        cardId,
+        sourceColumnId,
+        destinationColumnId,
+        position: destination.index
+      });
 
       // Call API to persist the change
       await CardService.moveCard(cardId, {

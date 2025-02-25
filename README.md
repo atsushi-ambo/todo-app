@@ -1,71 +1,104 @@
-# Todo-App
+# Trello Clone App
 
-A simple yet interactive To-Do application that allows users to manage their tasks effectively. Built with Flask for the backend, MySQL for the database, and simple HTML/CSS for the frontend.
+A modern Kanban board application inspired by Trello, built with TypeScript, React, Node.js, and MySQL. Features drag-and-drop functionality and a clean, responsive interface.
 
 ## Features
 
-- Add new tasks to your to-do list.
-- Edit existing tasks.
-- Delete tasks you've completed or no longer need to track.
-- Persistent storage with MySQL.
+- 📋 Kanban board with multiple columns (Todo, In Progress, Done, etc.)
+- 🎯 Create, edit, and delete cards
+- 🔄 Drag and drop cards between columns
+- 💾 Persistent storage with MySQL database
+- 🎨 Clean and modern UI with GMO-inspired theme
+- 🚀 Real-time updates
+- 📱 Responsive design
+
+## Tech Stack
+
+### Frontend
+- React with TypeScript
+- Styled Components for styling
+- React Beautiful DnD for drag-and-drop functionality
+
+### Backend
+- Node.js with Express
+- TypeScript
+- MySQL for database
+- CORS enabled API
+
+### Infrastructure
+- Docker and Docker Compose for containerization
+- Multi-container architecture (frontend, backend, database)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ### Prerequisites
 
-- Docker
-- Docker Compose
+- Docker and Docker Compose installed on your machine
+- Git
 
 ### Installation
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/atsushi-ambo/todo-app.git
-```
-
-2. Navigate to the project directory:
-```bash
 cd todo-app
 ```
 
-3. Create a `.env` file at the root of the project with the following content:
-```env
-MYSQL_ROOT_PASSWORD=yourpassword
-```
-Replace `yourpassword` with a secure password of your choosing.
-
-4. Build and start the containers using Docker Compose:
+2. Start the application using Docker Compose:
 ```bash
 docker-compose up --build
 ```
-The app will be served at `http://localhost:3000`.
 
-## Usage
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:4000
+- MySQL Database: localhost:3306
 
-Use the web interface to add, edit, or delete tasks. The application provides a straightforward and intuitive user interface for managing your to-do list.
+## Development
 
-## Running Tests
+### Project Structure
+```
+todo-app/
+├── frontend/           # React frontend application
+│   ├── src/           
+│   │   ├── components/  # React components
+│   │   ├── services/   # API services
+│   │   └── types/      # TypeScript types
+│   └── Dockerfile
+├── backend/           # Node.js backend application
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── db/
+│   │   └── models/
+│   └── Dockerfile
+├── mysql/            # MySQL database
+│   └── init.sql      # Database initialization
+└── docker-compose.yml
+```
 
-Currently, there are no tests written for this application. Tests could be written using frameworks like `unittest` or `pytest` for Python.
+### API Endpoints
+
+- `GET /api/boards` - Get all boards
+- `GET /api/boards/:id` - Get a specific board
+- `POST /api/cards` - Create a new card
+- `PUT /api/cards/:id` - Update a card
+- `DELETE /api/cards/:id` - Delete a card
 
 ## Contributing
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## Deployment
+## License
 
-This application is configured for development purposes and is not ready for production deployment. Please ensure you configure it properly for production environments before any deployment.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Built With
+## Acknowledgments
 
-- [Flask](http://flask.pocoo.org/) - The web framework used.
-- [MySQL](https://www.mysql.com/) - Open-source relational database.
-- [Docker](https://www.docker.com/) - Containerization and deployment.
+- Inspired by Trello's excellent UI/UX
+- Theme colors inspired by GMO's corporate design
+- Built with modern web development best practices

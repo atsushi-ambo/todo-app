@@ -1,10 +1,10 @@
-# To-Do App
+# ToDo-App
 
 A modern kanban-style task management application developed through collaboration between **human developers** and **generative AI**.
 
 ## About This Project
 
-This To-Do App is the result of a unique collaboration between human developers and generative AI (GitHub Copilot). By combining human creativity and problem-solving with AI assistance for code generation, debugging, and feature implementation, we've created an application that demonstrates the potential of human-AI collaboration in software development.
+This ToDo-App is the result of a unique collaboration between human developers and generative AI (GitHub Copilot). By combining human creativity and problem-solving with AI assistance for code generation, debugging, and feature implementation, we've created an application that demonstrates the potential of human-AI collaboration in software development.
 
 ## What's New
 

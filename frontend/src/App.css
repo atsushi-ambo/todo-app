@@ -1,0 +1,633 @@
+/* Base styles for the app */
+.App {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.App-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+main {
+  padding: 0 1rem;
+}
+
+.board-list {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+  min-height: 300px;
+  align-items: flex-start;
+}
+
+.board-column {
+  background-color: #f4f5f7;
+  border-radius: 8px;
+  min-width: 280px;
+  max-width: 280px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.droppable-area {
+  min-height: 100px;
+  padding: 8px 4px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.drag-item {
+  background-color: white;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  cursor: grab;
+  color: #333;
+  user-select: none;
+  border: 1px solid #ddd;
+}
+
+.dragging {
+  opacity: 0.7;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.dragging-over {
+  background-color: #e0e6ed;
+}
+
+.empty-message {
+  color: #888;
+  padding: 10px;
+  font-style: italic;
+  text-align: center;
+}
+
+.board-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4a6fa5;
+  color: white;
+  padding: 12px 16px;
+  margin-top: 0;
+  border-radius: 6px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.card-count {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.simple-droppable-area {
+  min-height: 200px;
+  background-color: #e9ecef;
+  border: 2px dashed #ced4da;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.enhanced-droppable-area {
+  min-height: 200px;
+  background-color: #f0f2f5;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  overflow: visible;
+  border: 1px solid #e0e6ed;
+}
+
+.simple-card {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-left: 5px solid #4a6fa5;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  text-align: left;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.enhanced-card {
+  background-color: #ffffff;
+  border-left: 4px solid #4a6fa5;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  transition: all 0.15s ease-in-out;
+  user-select: none;
+}
+
+.enhanced-card:hover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.dragging {
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2) !important;
+  opacity: 0.9;
+  z-index: 9999 !important;
+  transform: rotate(1deg);
+  cursor: grabbing;
+}
+
+.drag-handle {
+  color: #8c9bab;
+  cursor: grab;
+  padding: 0 8px 0 0;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab !important;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.drag-icon {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+  user-select: none;
+}
+
+.card-content {
+  flex: 1;
+  overflow-wrap: break-word;
+}
+
+.card-title {
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.enhanced-card:hover .card-actions {
+  opacity: 1;
+}
+
+.edit-button, .delete-button {
+  border: none;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.edit-button:hover {
+  background-color: #2980b9;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.add-card-button {
+  background-color: transparent;
+  border: 1px dashed #adb5bd;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  color: #6c757d;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+}
+
+.add-card-button:hover {
+  background-color: #f8f9fa;
+  color: #495057;
+  border-color: #6c757d;
+}
+
+.add-card-form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.add-card-form-enhanced {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 8px;
+}
+
+.add-card-form input {
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.add-card-form-enhanced textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  min-height: 60px;
+  margin-bottom: 8px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.add-card-form button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-card-form button:hover {
+  background-color: #27ae60;
+}
+
+.add-button:hover {
+  background-color: #27ae60;
+}
+
+.add-card-form button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.add-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: #f1f3f5;
+  color: #495057;
+  border: 1px solid #ced4da;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #e9ecef;
+}
+
+.edit-card-form {
+  width: 100%;
+}
+
+.edit-card-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  min-height: 60px;
+  margin-bottom: 8px;
+  resize: vertical;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.label {
+  background-color: #e9ecef;
+  color: #343a40;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-weight: normal;
+}
+
+.priority-high {
+  border-left-color: #e74c3c;
+}
+
+.priority-medium {
+  border-left-color: #f39c12;
+}
+
+.priority-low {
+  border-left-color: #3498db;
+}
+
+.simple-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+/* Enhanced drag and drop styles */
+.dragging-active {
+  cursor: grabbing !important;
+}
+
+.dragging-active .board-column:not(.dragging-over) {
+  transition: transform 0.2s ease;
+}
+
+.dragging-active .enhanced-droppable-area.dragging-over {
+  background-color: #e0e6ed;
+  box-shadow: inset 0 0 0 2px #4a6fa5;
+  transition: background-color 0.2s ease;
+}
+
+.enhanced-card .drag-icon {
+  display: inline-block;
+  line-height: 1;
+  cursor: grab;
+}
+
+.enhanced-card.dragging {
+  transform: rotate(1deg) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+  opacity: 0.9;
+  cursor: grabbing;
+}
+
+.enhanced-card.return-animation {
+  animation: return-to-position 0.3s ease-in-out;
+}
+
+.enhanced-card.drop-success {
+  animation: drop-pulse 0.5s ease-in-out;
+}
+
+@keyframes return-to-position {
+  0% { transform: translateX(10px); opacity: 0.8; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes drop-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(74, 111, 165, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(74, 111, 165, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 111, 165, 0); }
+}
+
+/* Ghost item while dragging */
+.enhanced-card.dragging::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* Improve drag handle */
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #8c9bab;
+  border-radius: 4px;
+  margin-right: 8px;
+  padding: 0;
+}
+
+.drag-handle:hover {
+  background-color: #f1f3f5;
+  color: #495057;
+}
+
+.dragging .drag-handle {
+  background-color: transparent;
+}
+
+/* Improve accessibility for keyboard navigation */
+.enhanced-card:focus-within {
+  outline: 2px solid #4a6fa5;
+  outline-offset: 2px;
+}
+
+/* Focus styles for interactive elements */
+button:focus, textarea:focus, input:focus {
+  outline: 2px solid #4a6fa5;
+  outline-offset: 2px;
+}
+
+/* Make it responsive */
+@media (max-width: 768px) {
+  .board-list {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .board-column {
+    min-width: 100%;
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+}
+
+/* Better visual feedback for drag hover */
+.dragging-over {
+  background-color: #e0e6ed;
+  box-shadow: inset 0 0 0 2px #4a6fa5;
+}
+
+/* Animation for when a card is dropped */
+@keyframes drop-success {
+  0% { box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(46, 204, 113, 0.2); }
+  100% { box-shadow: 0 0 0 2px rgba(46, 204, 113, 0); }
+}
+
+.drop-success {
+  animation: drop-success 0.5s ease-out forwards;
+}
+
+/* Animation for when a card returns to its original position */
+@keyframes return-animation {
+  0% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+.return-animation {
+  animation: return-animation 0.3s ease-out forwards;
+}
+
+/* App title editing styles */
+.app-header-container {
+  margin-bottom: 20px;
+  padding: 0 16px;
+  background-color: #4a6fa5; /* Match the blue background */
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  color: white; /* Change from #333 to white for better contrast */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  margin: 0; /* Remove default margins */
+}
+
+.app-title:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Lighter hover effect */
+}
+
+.app-title .edit-icon {
+  opacity: 0.7;
+  font-size: 16px;
+  margin-left: 8px;
+  color: white; /* Change color to white */
+  transition: opacity 0.2s;
+}
+
+.app-title:hover .edit-icon {
+  opacity: 1;
+}
+
+.app-title-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.app-title-edit input {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border: 2px solid #4a6fa5;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.title-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.title-actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.title-actions button:first-child {
+  background-color: #4a6fa5;
+  color: white;
+}
+
+/* Fix for drag and drop functionality */
+.react-beautiful-dnd-placeholder {
+  background-color: rgba(74, 111, 165, 0.1) !important;
+  border: 2px dashed #4a6fa5 !important;
+  border-radius: 4px;
+  min-height: 50px;
+  opacity: 0.6;
+}
+
+/* Ensure cursor shows grabbing during drag */
+body.dragging {
+  cursor: grabbing !important;
+}
+
+/* Additional styles to improve drag and drop */
+.react-beautiful-dnd-placeholder {
+  background-color: rgba(74, 111, 165, 0.1);
+  border: 2px dashed #4a6fa5;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  min-height: 50px;
+}
+
+/* Force handles to be grabbable */
+[data-rbd-drag-handle-context-id] {
+  cursor: grab !important;
+}
+
+[data-rbd-drag-handle-context-id]:active {
+  cursor: grabbing !important;
+}
+
+/* Force card to be properly styled during drag */
+[data-rbd-draggable-id] {
+  user-select: none !important;
+}

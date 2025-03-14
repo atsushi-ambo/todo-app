@@ -180,6 +180,8 @@ const BoardColumn: React.FC<BoardColumnProps> = ({
     }
   };
 
+  console.log('Rendering Droppable with ID:', column.id);
+
   return (
     <ColumnContainer>
       <ColumnHeader>{column.name}</ColumnHeader>

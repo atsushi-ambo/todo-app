@@ -3,18 +3,6 @@ import styled from 'styled-components';
 import CardList from './CardList';
 import { Card } from '../types';
 
-// Make sure this file is treated as a module
-export {};
-
-const BoardContainer = styled.div`
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-  overflow-x: auto;
-  height: 100%;
-`;
-
-// Define proper types for our data structure
 interface CardType {
   id: number;
   title: string;
@@ -29,6 +17,14 @@ interface ListType {
 interface ListsState {
   [key: string]: ListType;
 }
+
+const BoardContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  overflow-x: auto;
+  height: 100%;
+`;
 
 // Example initial data
 const initialLists: ListsState = {

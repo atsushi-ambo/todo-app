@@ -4,9 +4,6 @@ import styled from 'styled-components';
 import CardItem from './CardItem';
 import { Card } from '../types';
 
-// Make sure this file is treated as a module
-export {};
-
 interface CardListProps {
   cards: Card[];
   listId: string;
@@ -34,8 +31,6 @@ const CardList: React.FC<CardListProps> = ({
   onDeleteCard,
   onReorderCards
 }) => {
-  // Remove handleDragEnd function as it will be handled at the App level
-  
   return (
     <ListContainer>
       <Droppable droppableId={listId}>

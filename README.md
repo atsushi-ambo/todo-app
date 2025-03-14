@@ -1,104 +1,75 @@
-# Trello Clone App
+# To-Do App
 
-A modern Kanban board application inspired by Trello, built with TypeScript, React, Node.js, and MySQL. Features drag-and-drop functionality and a clean, responsive interface.
+A modern kanban-style task management application developed through collaboration between **human developers** and **generative AI**.
+
+## About This Project
+
+This To-Do App is the result of a unique collaboration between human developers and generative AI (GitHub Copilot). By combining human creativity and problem-solving with AI assistance for code generation, debugging, and feature implementation, we've created an application that demonstrates the potential of human-AI collaboration in software development.
+
+## What's New
+
+- Enhanced smooth transitions and responsive UI for a seamless experience.
+- Improved performance with optimized backend processes.
+- Updated collaboration flow integrating continuous human-AI improvements.
 
 ## Features
 
-- 📋 Kanban board with multiple columns (Todo, In Progress, Done, etc.)
-- 🎯 Create, edit, and delete cards
-- 🔄 Drag and drop cards between columns
-- 💾 Persistent storage with MySQL database
-- 🎨 Clean and modern UI with GMO-inspired theme
-- 🚀 Real-time updates
-- 📱 Responsive design
+- Interactive drag-and-drop interface with smooth animations
+- Create, edit, and delete task cards in real-time
+- Organize tasks across columns (To Do, In Progress, Done)
+- Visual priority indicators and customizable labels
+- Editable board title with instant updates
+- Responsive design optimized for both desktop and mobile
 
-## Tech Stack
+## Technologies Used
 
-### Frontend
-- React with TypeScript
-- Styled Components for styling
-- React Beautiful DnD for drag-and-drop functionality
-
-### Backend
-- Node.js with Express
-- TypeScript
-- MySQL for database
-- CORS enabled API
-
-### Infrastructure
-- Docker and Docker Compose for containerization
-- Multi-container architecture (frontend, backend, database)
+- **Frontend**: React, TypeScript, react-beautiful-dnd
+- **Backend**: Node.js, Express
+- **Database**: MySQL
+- **Containerization**: Docker
+- **Development Tools**: GitHub Copilot
 
 ## Getting Started
 
 ### Prerequisites
 
-- Docker and Docker Compose installed on your machine
-- Git
+- Docker and Docker Compose
+- Node.js (for local development)
 
-### Installation
+### Running with Docker
 
 1. Clone the repository:
-```bash
-git clone https://github.com/atsushi-ambo/todo-app.git
-cd todo-app
-```
+   ```
+   git clone https://github.com/yourusername/todo-app.git
+   cd todo-app
+   ```
 
 2. Start the application using Docker Compose:
-```bash
-docker-compose up --build
-```
+   ```
+   docker-compose up
+   ```
 
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:4000
-- MySQL Database: localhost:3306
+3. Access the application at [http://localhost:3000](http://localhost:3000)
 
-## Development
+### Local Development
 
-### Project Structure
-```
-todo-app/
-├── frontend/           # React frontend application
-│   ├── src/           
-│   │   ├── components/  # React components
-│   │   ├── services/   # API services
-│   │   └── types/      # TypeScript types
-│   └── Dockerfile
-├── backend/           # Node.js backend application
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── db/
-│   │   └── models/
-│   └── Dockerfile
-├── mysql/            # MySQL database
-│   └── init.sql      # Database initialization
-└── docker-compose.yml
-```
+1. Start the backend:
+   ```
+   cd backend
+   npm install
+   npm run dev
+   ```
 
-### API Endpoints
+2. Start the frontend (in a new terminal):
+   ```
+   cd frontend
+   npm install
+   npm start
+   ```
 
-- `GET /api/boards` - Get all boards
-- `GET /api/boards/:id` - Get a specific board
-- `POST /api/cards` - Create a new card
-- `PUT /api/cards/:id` - Update a card
-- `DELETE /api/cards/:id` - Delete a card
+## How Human-AI Collaboration Works
 
-## Contributing
+- **Human Developer**: Led project vision, design improvements and complex problem solving.
+- **Generative AI**: Continues to assist with code generation, rapid prototyping, and UI enhancements.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Inspired by Trello's excellent UI/UX
-- Theme colors inspired by GMO's corporate design
-- Built with modern web development best practices
+This collaboration showcases how AI can enhance developer productivity while allowing humans to focus on higher-level aspects of software creation.

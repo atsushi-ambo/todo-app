@@ -18,6 +18,7 @@ interface CardUpdate {
 interface CardMove {
   column_id: number;
   position: number;
+  source_column_id: number;
 }
 
 class CardService {
@@ -46,10 +47,11 @@ class CardService {
     return response.data;
   };
 
-  moveCard = async (id: number, moveData: { sourceColumnId: number; destinationColumnId: number; position: number }): Promise<Card> => {
+  moveCard = async (id: number, moveData: CardMove): Promise<Card> => {
     const response = await axios.put(`${API_URL}/cards/${id}/move`, {
-      column_id: moveData.destinationColumnId,
-      position: moveData.position
+      column_id: moveData.column_id,
+      position: moveData.position,
+      source_column_id: moveData.source_column_id
     });
     return response.data;
   };
